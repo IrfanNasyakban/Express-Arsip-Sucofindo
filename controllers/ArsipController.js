@@ -1,10 +1,10 @@
-import Arsip from "../models/ArsipModel.js";
-import Data from "../models/DataModel.js";
-import { Op } from "sequelize"
-import path from "path";
-import fs from "fs";
+const Arsip = require("../models/ArsipModel.js");
+const Data = require("../models/DataModel.js");
+const { Op } = require("sequelize");
+const path = require("path");
+const fs = require("fs");
 
-export const getArsip = async (req, res) => {
+const getArsip = async (req, res) => {
   try {
     const arsip = await Arsip.findAll({
       include: [{
@@ -18,7 +18,7 @@ export const getArsip = async (req, res) => {
   }
 };
 
-export const getArsipById = async (req, res) => {
+const getArsipById = async (req, res) => {
   try {
     const response = await Arsip.findOne({
       where: {
@@ -35,7 +35,7 @@ export const getArsipById = async (req, res) => {
   }
 };
 
-export const createArsip = async (req, res) => {
+const createArsip = async (req, res) => {
   if (req.files === null)
     return res.status(400).json({ msg: "No File Uploaded" });
   try {
@@ -83,7 +83,7 @@ export const createArsip = async (req, res) => {
   } catch (error) {}
 };
 
-export const updateArsip = async (req, res) => {
+const updateArsip = async (req, res) => {
   const arsip = await Arsip.findOne({
     where: {
       idArsip: req.params.idArsip,
@@ -144,7 +144,7 @@ export const updateArsip = async (req, res) => {
   }
 };
 
-export const deleteArsip = async (req, res) => {
+const deleteArsip = async (req, res) => {
   try {
     const arsip = await Arsip.findOne({
       where: {
@@ -166,4 +166,12 @@ export const deleteArsip = async (req, res) => {
     console.log(error.message);
     res.status(500).json({ msg: "Server Error" });
   }
+};
+
+module.exports = {
+  getArsip,
+  getArsipById,
+  createArsip,
+  updateArsip,
+  deleteArsip
 };

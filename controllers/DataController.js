@@ -1,8 +1,8 @@
-import Data from "../models/DataModel.js";
-import Arsip from "../models/ArsipModel.js";
-import { Op } from "sequelize"
+const Arsip = require("../models/ArsipModel.js");
+const Data = require("../models/DataModel.js");
+const { Op } = require("sequelize");
 
-export const getData = async (req, res) => {
+const getData = async (req, res) => {
   try {
     const data = await Data.findAll({
       include: [{
@@ -16,7 +16,7 @@ export const getData = async (req, res) => {
   }
 };
 
-export const getDataById = async (req, res) => {
+const getDataById = async (req, res) => {
   try {
     const response = await Data.findOne({
       where: {
@@ -33,7 +33,7 @@ export const getDataById = async (req, res) => {
   }
 };
 
-export const createData = async (req, res) => {
+const createData = async (req, res) => {
   const { noOrder, noSpk, namaPelanggan, subPortfolio, nilai, nama, email, noHp } = req.body;
 
   try {
@@ -69,7 +69,7 @@ export const createData = async (req, res) => {
   }
 };
 
-export const updateData = async (req, res) => {
+const updateData = async (req, res) => {
   try {
     await Data.update(req.body, {
       where: {
@@ -82,7 +82,7 @@ export const updateData = async (req, res) => {
   }
 };
 
-export const deleteData = async (req, res) => {
+const deleteData = async (req, res) => {
   try {
     await Data.destroy({
       where: {
@@ -93,4 +93,12 @@ export const deleteData = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+module.exports = {
+  getData,
+  getDataById,
+  createData,
+  updateData,
+  deleteData
 };

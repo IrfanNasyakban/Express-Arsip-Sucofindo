@@ -1,6 +1,6 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database.js";
-import Data from "./DataModel.js";
+const { Sequelize } = require("sequelize");
+const db = require("../config/Database.js");
+const Data = require("./DataModel.js");
 
 const {DataTypes} = Sequelize;
 
@@ -22,7 +22,7 @@ const Arsip = db.define('arsip', {
 Arsip.belongsTo(Data, { foreignKey: 'idData', as: "Data" })
 Data.hasMany(Arsip, { foreignKey: 'idData' });
 
-export default Arsip;
+module.exports = Arsip;
 
 (async()=> {
     await db.sync();
