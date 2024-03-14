@@ -2,6 +2,17 @@ const Arsip = require("../models/ArsipModel.js");
 const Data = require("../models/DataModel.js");
 const { Op } = require("sequelize");
 
+const getRes = async (req, res) => {
+  try {
+    const data = {
+      data: "data success"
+    }
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ msg: error.message })
+  }
+};
+
 const getData = async (req, res) => {
   try {
     const data = await Data.findAll({
@@ -96,6 +107,7 @@ const deleteData = async (req, res) => {
 };
 
 module.exports = {
+  getRes,
   getData,
   getDataById,
   createData,

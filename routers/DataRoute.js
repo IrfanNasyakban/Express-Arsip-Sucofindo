@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
+    getRes,
     getData,
     getDataById,
     createData,
@@ -9,6 +10,7 @@ const {
     deleteData
 } = require("../controllers/DataController.js");
 
+router.get('/', getRes);
 router.get('/data', getData);
 router.get('/data/:idData', getDataById);
 router.post('/data', createData);

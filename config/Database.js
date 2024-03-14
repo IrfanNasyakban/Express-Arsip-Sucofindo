@@ -5,4 +5,4 @@ const db = new Sequelize('arsip_sucofindo', 'root', '', {
     dialect: 'mysql'
 })
 
-module.exports = db;
+module.exports = db
